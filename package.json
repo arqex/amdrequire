@@ -1,0 +1,14 @@
+{
+  "name": "amdrequire",
+  "version": "0.0.0",
+  "description": "Reuse require.js AMD modules in node.",
+  "main": "amdrequire.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Javi Marquez",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "amdefine": "~0.1.0"
+  }
+}
