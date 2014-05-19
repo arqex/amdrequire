@@ -135,16 +135,23 @@ var Module = require('module'),
 
 		if(settings.paths){
 			for (var depName in settings.paths){
-				var depPath = settings.paths[depName];
-				if(win)
-					depPath = depPath.replace(/\//g, '\\');
+				var depPath = settings.paths[depName],
+					base = basePath;
+
+				if(depPath[0] == '/'){ //Relative to the root url
+					base = publicPath;
+					depPath = depPath.substring(1);
+				}
 
 				//Normalize, no .js extension
 				if(path.extname(depPath) == '.js')
 					depPath = depPath.substring(0, depPath.length - 3);
 
+				if(win)
+					depPath = depPath.replace(/\//g, '\\');
+
 				//Store absolute paths
-				paths[depName] = path.resolve(basePath, depPath);
+				paths[depName] = path.resolve(base, depPath);
 			}
 		}
 	},
@@ -155,10 +162,16 @@ var Module = require('module'),
 			filepath
 		;
 		if(request[0] == '/'){
-			// Absolute url
+			// Absolute url or absolute path in linux
 			filepath = win ? request.substring(1).replace(/\//g, '\\') : request.substring(1);
-			return path.resolve(publicPath, filepath);
+			var lookupPaths = [path.dirname(request), path.dirname(path.resolve(publicPath, filepath))],
+				requestName = path.basename(request, '.js')
+			;
+
+			// Let Node look up the path for us
+			return Module._findPath(requestName, lookupPaths);
 		}
+
 		if (start !== './' && start !== '..' && start !== '.\\'){
 			if(paths[request]){
 				//Named require

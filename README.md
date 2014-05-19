@@ -55,7 +55,7 @@ Using the example above, when calling ```require(['world'])``` AMDrequire will l
 
 Let's have a look at the options of the config method:
 ### paths
-Define some named requires, so to use those modules it is not needed to write their full path, just the name defined here. The paths are relative to the basePath attribute.
+Defines some named requires, so to use those modules it is not needed to write their full path, just the name defined here. The paths are relative to the basePath attribute.
 
 **Note**: This named requires only affects to AMD ```require```s so you won't be able to call ```require('world')``` outside a ```define`` to get the *world* module.
 ### basePath
@@ -143,6 +143,9 @@ AMD has just born and I am sure there are lots of ways of improve it. Feel free 
 I am not sure if load external files is a good idea in Node apps, but I am sure that if protocol and domain matches our protocol and domain AMDrequire should work as if the require was local and it is not working like this yet.
 
 I personally would recommend always using relative paths instead of complete URLs.
+
+### More testing
+There is a small node app to test AMDrequire called [amdrequire-test](https://github.com/arqex/amdrequire-test). It tests the different ways that require.js load the files, but I am sure that those tests can be improved. Also, testing possible Node and AMD require conflicts would be great.
 
 ## References
 This piece of code has been developed with one eye on the [Node's module source code](https://github.com/joyent/node/blob/master/lib/module.js) and the other on the [require.js documentation](http://requirejs.org/docs/api.html).
