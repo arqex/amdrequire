@@ -147,6 +147,12 @@ I personally would recommend always using relative paths instead of complete URL
 ### More testing
 There is a small node app to test AMDrequire called [amdrequire-test](https://github.com/arqex/amdrequire-test). It tests the different ways that require.js load the files, but I am sure that those tests can be improved. Also, testing possible Node and AMD require conflicts would be great.
 
+### Plugins
+No plugins are yet supported. I haven't investigated about how to do it, but it would be great to give universal require.js plugin support. If complete plugin support is not possible, at least would be great to have [text plugin support](https://github.com/requirejs/text).
+
+### Named defines
+AMDrequire doesn't support named defines as they appeare in the [require.js docs](http://requirejs.org/docs/api.html#modulename). It shouldn't be difficult to support them.
+
 ## References
 This piece of code has been developed with one eye on the [Node's module source code](https://github.com/joyent/node/blob/master/lib/module.js) and the other on the [require.js documentation](http://requirejs.org/docs/api.html).
 
