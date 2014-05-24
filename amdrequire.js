@@ -114,6 +114,10 @@ var Module = require('module'),
 			//Require all the dependencies
 			exp = amdrequire(deps, callback, defineModuleStack[defineModuleStack.length - 1]);
 		}
+		// No dependencies, first arg as callback
+		else if(!callback && typeof deps === 'function'){
+			exp = deps();
+		}
 		// Define a module directly as an object
 		else if(deps !== null && typeof deps === 'object'){
 			exp = deps;
